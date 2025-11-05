@@ -68,12 +68,9 @@ jobs:
           export KERNEL_SOURCE="https://github.com/meafrenchdude/kernel_samsung_a127f"
           
           # Apply localversion from workflow input
+          
           if [ -n "${{ github.event.inputs.LOCALVERSION }}" ]; then
-            lv="${{ github.event.inputs.LOCALVERSION }}"
-            case "$lv" in
-              -*) export LOCALVERSION="$lv" ;;
-              *)  export LOCALVERSION="-$lv" ;;
-            esac
+            export LOCALVERSION="${{ github.event.inputs.LOCALVERSION }}"
           else
             export LOCALVERSION="-AFrenchKernel_Basic_Beta"
           fi
