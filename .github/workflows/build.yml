@@ -95,13 +95,6 @@ jobs:
           path: kernel_root/anykernel3/*
           compression-level: 9
 
-      - name: Download AnyKernel3 artifact
-        if: ${{ github.event.inputs.UPLOAD_TO_TG == 'true' }}
-        uses: actions/download-artifact@v4
-        with:
-          name: AnyKernel3-${{ github.event.inputs.AK3_NAME }}
-          path: ak3_upload
-
       - name: Create AnyKernel3 ZIP 
         run: |
           cd kernel_root/anykernel3
