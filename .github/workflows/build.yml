@@ -3,6 +3,10 @@ name: Build Kernel
 on:
   workflow_dispatch:
     inputs:
+      LOCALVERSION:
+        description: Kernel localversion
+        required: true
+        default: "-AFrenchKernel_Basic_"
       AK3_NAME:
         description: Enter custom name for AnyKernel3 artifact
         required: true
@@ -61,6 +65,17 @@ jobs:
           export DEFCONFIG="exynos850-a12snsxx_defconfig"
           export DEVICE_ID="A12s"
           export KERNEL_SOURCE="https://github.com/meafrenchdude/kernel_samsung_a127f"
+          
+          # Apply localversion from workflow input
+          if [ -n "${{ github.event.inputs.LOCALVERSION }}" ]; then
+            lv="${{ github.event.inputs.LOCALVERSION }}"
+            case "$lv" in
+              -*) export LOCALVERSION="$lv" ;;
+              *)  export LOCALVERSION="-$lv" ;;
+            esac
+          else
+            export LOCALVERSION="-AFrenchKernel_Basic_Beta"
+          fi
           
           echo "TITLE=Galaxy `echo $DEVICE_ID` Kernel" >> $GITHUB_ENV
 
