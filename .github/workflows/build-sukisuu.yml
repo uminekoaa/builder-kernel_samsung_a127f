@@ -22,7 +22,7 @@ jobs:
       - name: Checkout Kernel Source
         uses: actions/checkout@v4
         with:
-          repository: meafrenchdude/kernel_samsung_a127f
+          repository: uminekoaa/kernel_samsung_a127f
           path: kernel_root
           ref: sukisu-ultra
           show-progress: false
